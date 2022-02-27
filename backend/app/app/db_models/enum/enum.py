@@ -15,7 +15,6 @@ class AuditType(str, enum.Enum):
     comments = "comments"
     status_change = "status_change"
     type_change = "type_change"
-    milestone_change = "milestone_change"
     assignee_change = "assignee_change"
 
 class Roles(str, enum.Enum):

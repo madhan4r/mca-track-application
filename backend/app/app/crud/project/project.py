@@ -1,6 +1,5 @@
 from app.db_models.issue.issue import Issue
 from app.db_models.project.module import ProjectModule
-from app.db_models.project.milestone import ProjectMilestone
 from typing import Any, Dict, Optional, Union
 from fastapi import HTTPException
 
@@ -52,13 +51,11 @@ class CRUDProject(CRUDBase[Project, ProjectCreate, ProjectUpdate]):
     def delete(self, db: Session, id: Any):
         project = db.query(Project).filter(
             Project.project_id == id).first()
-        project_milestone = db.query(ProjectMilestone).filter(
-            ProjectMilestone.project_id == id).first()
         project_module = db.query(ProjectModule).filter(
             ProjectModule.project_id == id).first()
         issues = db.query(Issue).filter(Issue.project_id == id).first()
 
-        if project is None and project_milestone is None and project_module is None and issues is None:
+        if project is None and project_module is None and issues is None:
             super().remove(db, id=id)
             return "Requested project has been deleted"
         else:

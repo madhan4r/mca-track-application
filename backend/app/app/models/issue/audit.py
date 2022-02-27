@@ -6,7 +6,6 @@ from app.db_models.enum.enum import AuditType
 from app.models.issue.status import IssueStatusSummary
 from app.models.issue.type import IssueTypeSummary
 from app.models.user.user import UserInDBBase
-from app.models.project.milestone import ProjectMilestoneSummary
 
 
 class AuditIssueBase(BaseModel):
@@ -15,8 +14,6 @@ class AuditIssueBase(BaseModel):
     updated_status_id: Optional[int]
     previous_type_id: Optional[int]
     updated_type_id: Optional[int]
-    previous_milestone_id: Optional[int]
-    updated_milestone_id: Optional[int]
     previous_assignee_id: Optional[int]
     updated_assignee_id: Optional[int]
     comments: Optional[str]
@@ -42,8 +39,6 @@ class AuditIssueSummary(AuditIssueBase):
     updated_status: Optional[IssueStatusSummary]
     previous_type: Optional[IssueTypeSummary]
     updated_type: Optional[IssueTypeSummary]
-    previous_milestone: Optional[ProjectMilestoneSummary]
-    updated_milestone: Optional[ProjectMilestoneSummary]
     previous_assignee: Optional[UserInDBBase]
     updated_assignee: Optional[UserInDBBase]
     created_user: Optional[UserInDBBase]

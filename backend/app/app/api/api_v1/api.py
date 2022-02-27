@@ -3,9 +3,8 @@ from fastapi import APIRouter
 from app.api.api_v1.endpoints import login
 from app.api.api_v1.endpoints.enum import enum_type
 from app.api.api_v1.endpoints.user import user
-from app.api.api_v1.endpoints.milestone import milestone
 from app.api.api_v1.endpoints.module import module
-from app.api.api_v1.endpoints.project import project, milestone as project_milestone, module as project_module
+from app.api.api_v1.endpoints.project import project, module as project_module
 from app.api.api_v1.endpoints.issue import (
     status as issue_status,
     type as issue_type,
@@ -22,15 +21,11 @@ api_router.include_router(login.router, tags=["Login"])
 # User
 api_router.include_router(user.router, prefix="/users", tags=["users"])
 
-# Milestone
-api_router.include_router(milestone.router, prefix="/milestone", tags=['Milestones'])
-
 # Module
 api_router.include_router(module.router, prefix="/module", tags=['Modules'])
 
 # Project
 api_router.include_router(project.router, prefix="/project", tags=['Projects'])
-api_router.include_router(project_milestone.router, prefix="/project/milestone", tags=['Projects'])
 api_router.include_router(project_module.router, prefix="/project/module", tags=['Projects'])
 
 # Issue

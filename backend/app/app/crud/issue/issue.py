@@ -46,7 +46,6 @@ class CRUDIssue(CRUDBase[Issue, IssueCreate, IssueUpdate]):
             update_data = obj_in.dict(exclude_unset=True)
         old_status_id = db_obj.status_id
         old_type_id = db_obj.type_id
-        old_milestone_id = db_obj.milestone_id
         old_assignee_id = db_obj.assigned_to
         issue_data = super().update(db, db_obj=db_obj, obj_in=update_data)
         if update_data.get('status_id', None) and old_status_id != update_data.get('status_id'):
@@ -67,18 +66,6 @@ class CRUDIssue(CRUDBase[Issue, IssueCreate, IssueUpdate]):
                 audit_type='type_change',
                 previous_type_id=old_type_id,
                 updated_type_id=update_data.get('type_id')
-            )
-            audit.create(
-                db=db,
-                obj_in=new_audit,
-                created_by=created_by
-            )
-        if update_data.get('milestone_id', None) and old_milestone_id != update_data.get('milestone_id'):
-            new_audit = AuditIssueCreate(
-                issue_id=update_data.get('issue_id'),
-                audit_type='milestone_change',
-                previous_milestone_id=old_milestone_id,
-                updated_milestone_id=update_data.get('milestone_id')
             )
             audit.create(
                 db=db,

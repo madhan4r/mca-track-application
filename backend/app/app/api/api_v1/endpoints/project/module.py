@@ -40,7 +40,7 @@ def get_project_modules(
 
 
 @router.put('/', response_model=ProjectModuleSummary)
-def update_project_milestone(
+def update_project_module(
     data_access_filter: ProjectModuleUpdate,
     db_session: Session = Depends(get_db),
 

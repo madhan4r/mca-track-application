@@ -14,7 +14,6 @@ from app.api.deps import get_db, get_current_user
 from app.models.issue.issue import IssueCreate, IssueUpdate, IssueSummary, IssueMinimal, IssueStatusCount, IssueProjectCount, IssueDetailCount
 from app.db_models.user.user import User
 from app.db_models.project.module import ProjectModule
-from app.db_models.project.milestone import ProjectMilestone
 from app.db_models.issue.issue import Issue
 from app.db_models.issue.type import IssueType
 from app.db_models.issue.status import IssueStatus
@@ -46,14 +45,13 @@ def get_issues(
         db_model=Issue,
         join_db_models=[
             IssueType, IssueStatus, IssuePriority,
-            ProjectModule, ProjectMilestone, Project, User
+            ProjectModule, Project, User
         ],
         join_conditions=[
             Issue.type_id == IssueType.issue_type_id,
             Issue.status_id == IssueStatus.issue_status_id,
             Issue.priority_id == IssuePriority.issue_priority_id,
             Issue.module_id == ProjectModule.project_module_id,
-            Issue.milestone_id == ProjectMilestone.project_milestone_id,
             Issue.project_id == Project.project_id,
             Issue.created_by == User.user_id,
             Issue.assigned_to == User.user_id
@@ -77,14 +75,13 @@ def get_issues_count(
         db_model=Issue,
         join_db_models=[
             IssueType, IssueStatus, IssuePriority,
-            ProjectModule, ProjectMilestone, Project, User
+            ProjectModule, Project, User
         ],
         join_conditions=[
             Issue.type_id == IssueType.issue_type_id,
             Issue.status_id == IssueStatus.issue_status_id,
             Issue.priority_id == IssuePriority.issue_priority_id,
             Issue.module_id == ProjectModule.project_module_id,
-            Issue.milestone_id == ProjectMilestone.project_milestone_id,
             Issue.project_id == Project.project_id,
             Issue.created_by == User.user_id,
             Issue.assigned_to == User.user_id

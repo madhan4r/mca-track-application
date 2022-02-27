@@ -6,7 +6,6 @@ from app.models.issue.type import IssueTypeSummary
 from app.models.issue.status import IssueStatusSummary
 from app.models.issue.priority import IssuePrioritySummary
 from app.models.project.project import ProjectSummary
-from app.models.project.milestone import ProjectMilestoneSummary
 from app.models.project.module import ProjectModuleSummary
 from app.models.user.user import UserInDBBase
 
@@ -17,7 +16,6 @@ class IssueBase(BaseModel):
     type_id: Optional[int]
     status_id: Optional[int]
     priority_id: Optional[int]
-    milestone_id: Optional[int]
     module_id: Optional[int]
     gitlab_issue_id: Optional[int]
     assigned_to: Optional[int]
@@ -48,7 +46,6 @@ class IssueSummary(IssueBase):
     type: Optional[IssueTypeSummary]
     status: Optional[IssueStatusSummary]
     priority: Optional[IssuePrioritySummary]
-    milestone: Optional[ProjectMilestoneSummary]
     module: Optional[ProjectModuleSummary]
     created_user: Optional[UserInDBBase]
     assigned_to_user: Optional[UserInDBBase]

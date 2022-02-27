@@ -16,15 +16,6 @@ from app.models.project.project import ProjectCreate, ProjectUpdate, ProjectSumm
 from app.db_models.project.project import Project
 project = CRUDBase[Project, ProjectCreate, ProjectUpdate](Project)
 
-# Project Milestone
-from app.models.milestone.milestone import MilestoneCreate, MilestoneSummary, MilestoneUpdate
-from app.db_models.milestone.milestone import Milestone
-milestone = CRUDBase[Milestone, MilestoneCreate, MilestoneUpdate](Milestone)
-
-# Project Milestone
-from app.models.project.milestone import ProjectMilestoneCreate, ProjectMilestoneSummary, ProjectMilestoneUpdate
-from app.db_models.project.milestone import ProjectMilestone
-project_milestone = CRUDBase[ProjectMilestone, ProjectMilestoneCreate, ProjectMilestoneUpdate](ProjectMilestone)
 
 # Module
 from app.models.module.module import ModuleCreate, ModuleSummary, ModuleUpdate

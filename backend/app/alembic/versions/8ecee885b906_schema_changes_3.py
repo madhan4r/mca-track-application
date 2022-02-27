@@ -45,7 +45,6 @@ def upgrade():
             "comments",
             "status_change",
             "type_change",
-            "milestone_change",
             "assignee_change",
         ],
         table="audit_issue",
@@ -67,7 +66,7 @@ def downgrade():
     # removing new value 'assignee_change' in enum audittype
     EnumOperations.add_new_value(
         enum_name="audittype",
-        value=["comments", "status_change", "type_change", "milestone_change"],
+        value=["comments", "status_change", "type_change"],
         table="audit_issue",
         columns=["audit_type"],
         is_array=False,
