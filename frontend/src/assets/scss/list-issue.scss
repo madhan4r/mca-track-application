@@ -1,0 +1,60 @@
+.list-issue-page {
+  .card {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0px solid transparent;
+    border-radius: 0px;
+  }
+
+  .card-body {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+  }
+
+  .card .card-title {
+    position: relative;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .list-issue {
+    border: 1px solid grey;
+  }
+
+  ul.list-style-none li {
+    list-style: none;
+  }
+
+  ul.list-style-none li a {
+    color: black;
+    padding: 8px 0px;
+    display: block;
+    text-decoration: none;
+  }
+
+  .w-30px {
+    width: 30px;
+  }
+
+  .pagination {
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+    border-radius: 0.25rem;
+  }
+  a {
+    cursor: pointer;
+  }
+}

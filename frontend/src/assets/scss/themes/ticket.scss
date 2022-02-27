@@ -1,0 +1,108 @@
+// Variable overrides
+$sidebar-dark-bg: #c4c9d0;
+$sidebar-color: #ffffff;
+$sidebar-dark-color: $sidebar-color;
+$sidebar-dark-nav-title-color: $sidebar-color;
+$sidebar-dark-nav-dropdown-color: $sidebar-color;
+$sidebar-dark-nav-link-color: $sidebar-color;
+
+$color-white: #ffffff;
+$color-black: #000000;
+$color-red: #ff0000;
+$body-bg: #ccc;
+$text-primary-color: #434343;
+$text-secondary-color: #636363;
+$text-color: #3c4b64;
+
+$white: #ffffff;
+$black-clay: #353239;
+$text-base-color: $black-clay;
+
+$gray: #736e7a;
+$gray-light: #e4e4e4;
+$gray-blue: #817e85;
+$icon-color: $gray-blue;
+$gray-dark: #807c84;
+$purple-dark: #371d3c;
+$purple: #552387;
+$link-disabled-color: #c4a7e0;
+$red-soft: #f05f61;
+$orange-light: #9de077;
+$green: #17ad53;
+$red: #ff0000;
+$orange: #ffa500;
+
+$base-font-size: rem(1.6);
+$base-line-height: rem(1.7);
+$zero: 0;
+
+//border color
+$border-primary-color: #d9d9d9;
+
+// font color
+$font-theme-color: #9de077;
+$font-primary-color: #00000099;
+
+// Fonts
+$font-family: "STIX Two Text", serif;
+
+// Font sizes
+$font-size-micro: rem(2);
+$font-size-mini: rem(3);
+$font-size-small: rem(4);
+$font-size-default: rem(6);
+$font-size-medium: rem(8);
+$font-size-large: rem(8);
+$font-size-big: rem(10);
+$font-size-bigger: rem(12);
+$font-size-mega: rem(15);
+
+// font-weight
+$font-weight-feather: 100;
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-thick: 500;
+$font-weight-bold: 700;
+$font-weight-black: 900;
+
+$grid-getter-width: rem(4);
+
+// loader
+$loader-border-color: #9de077;
+
+$theme-colors: (
+  "primary": #9de077,
+  "primary-dark": #134b5a,
+  "secondary": #b8b8b8,
+  "amber": #ffbf00,
+  "medium-blue": cornflowerblue,
+  "grey": grey,
+  "darkturquoise": darkturquoise,
+  "low": #b6e087,
+  "medium": #8f62e1,
+  "high": #e16376,
+);
+
+// card-background-color
+$card-background-color: #eed7d7;
+
+// white && dark theme
+:root {
+  --main-background-color: white;
+  --primary-background-color: white;
+  --secondary-background-color: #ffffff;
+  --dynamic-title-color: #3c4b64;
+  --dynamic-subtitle-color: #4a4a4a;
+  // Filter Search div
+  --search-div: #f1f2f5;
+}
+
+[theme="dark"] {
+  --main-background-color: #181818;
+  --primary-background-color: #212121;
+  --secondary-background-color: #3d3d3d;
+  --dynamic-title-color: #ffffff;
+  --dynamic-subtitle-color: cyan;
+  // Filter Search div
+  --search-div: var(--secondary-background-color);
+}

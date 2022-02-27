@@ -1,0 +1,14 @@
+version: "3.6"
+
+services:
+  backend:
+    volumes:
+      - ./backend/app:/app
+      - ./backend/app/file_store:/file_store/
+  db:
+    volumes:
+      - ./backend/app/scripts/sql:/sql
+
+  frontend:
+    volumes:
+      - ./frontend/src:/frontend/src

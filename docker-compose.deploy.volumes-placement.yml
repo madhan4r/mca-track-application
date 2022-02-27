@@ -1,0 +1,29 @@
+version: '3.6'
+services:
+  db:
+    volumes:
+      - app-db-data:/var/lib/postgresql/data/pgdata
+    deploy:
+      placement:
+        constraints:
+          - node.labels.${STACK_NAME}.app-db-data == true
+  backend:
+    # volumes:
+    #   - file-store:/file_store/
+    deploy:
+      placement:
+        constraints:
+          - node.labels.${STACK_NAME}.file-store == true
+  proxy:
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
+    volumes:
+      - "letsencrypt:/letsencrypt/"
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+volumes:
+  letsencrypt:
+  app-db-data:
+  # file-store:

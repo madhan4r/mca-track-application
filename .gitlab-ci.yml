@@ -1,0 +1,44 @@
+image: tiangolo/docker-with-compose
+# trackdev
+
+before_script:
+  - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+  - pip install docker-auto-labels
+
+stages:
+  # - frontend-tests
+  - build
+  - deploy
+
+build-trackdev:
+  stage: build
+  script:
+    - TAG=trackdev FRONTEND_ENV=production sh ./scripts/build-push.sh
+  only:
+    - trackdev
+  tags:
+    - techno-main-runner
+
+deploy-trackdev:
+  stage: deploy
+  script:
+    - >
+      DOMAIN=track.in
+      TRAEFIK_TAG=track.in
+      STACK_NAME=track
+      TAG=track
+      SEED_DATA=""
+      REFRESH_SCHEMA=NO
+      sh ./scripts/deploy.sh
+  environment:
+    name: development
+    url: https://track.in
+  only:
+    - trackdev
+  tags:
+    - techno-main-runner
+  artifacts:
+    when: always
+    paths:
+      - ./docker-stack.yml
+    expire_in: 1 week

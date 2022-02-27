@@ -1,0 +1,15 @@
+version: "3.6"
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: backend.dockerfile
+      args:
+        env: dev
+        SEED_DATA: ${SEED_DATA}
+  frontend:
+    stdin_open: true
+    tty: true
+    build: 
+      context: ./frontend
+

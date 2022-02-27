@@ -1,0 +1,93 @@
+.cursor-pointer {
+  cursor: pointer;
+}
+.advert-section {
+  b,
+  strong {
+    font-weight: bold;
+  }
+  img {
+    max-height: 400px;
+  }
+}
+label.required {
+  &::after {
+    content: "*";
+    display: inline-block;
+    padding: 0 0.5rem;
+    color: crimson;
+  }
+}
+.navbar.navbar-dark .navbar-nav .nav-link {
+  margin-top: 6px;
+  color: black;
+  font-weight: 700;
+}
+.navbar.navbar-dark .navbar-nav .nav-link:hover,
+.navbar.navbar-dark .navbar-nav .nav-link:focus {
+  color: black;
+  font-weight: 700;
+}
+@media (max-width: 520px) {
+  .navigation {
+    font-size: 14px;
+  }
+  .card-title {
+    font-size: 17px;
+  }
+  .issue-title {
+    font-size: 16px;
+  }
+  .issue-data,
+  .back-navigation {
+    font-size: 12px;
+  }
+}
+.card-body {
+  padding: 1rem;
+}
+.back-navigation {
+  font-weight: 700;
+}
+.header {
+  .vs-button__content {
+    padding: 5px !important;
+  }
+}
+// For White & dark mode
+.c-header {
+  background-color: var(--main-background-color);
+  color: var(--dynamic-title-color);
+}
+.c-footer {
+  background-color: var(--main-background-color);
+  color: var(--dynamic-title-color);
+  border-top: 1px solid var(--main-background-color);
+}
+.card {
+  background-color: var(--secondary-background-color) !important;
+}
+.list li {
+  background: var(--secondary-background-color) !important;
+}
+hr {
+  border-color: var(--dynamic-subtitle-color);
+}
+.vs__dropdown-toggle {
+  background: white;
+}
+.vd-picker__input input {
+  background-color: white !important;
+  color: black !important;
+}
+.modal-body {
+  background: var(--secondary-background-color);
+}
+.modal-footer {
+  background: var(--secondary-background-color);
+}
+[theme="dark"] {
+  .media .comment {
+    background: grey !important;
+  }
+}

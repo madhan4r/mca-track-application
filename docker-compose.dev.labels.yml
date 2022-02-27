@@ -1,0 +1,22 @@
+version: '3.6'
+
+services:
+  backend:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.backend.rule=(Host(`${DOMAIN}`) || Host(`proxy`)) && PathPrefix(`/api`,`/docs`,`/redoc`)"
+      - "traefik.http.routers.backend.entrypoints=web"
+      - "traefik.http.services.backend.loadbalancer.server.port=80"
+  proxy:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.proxy.rule=(Host(`traefik.${DOMAIN}`) || Host(`traefik.proxy`))"
+      - "traefik.http.routers.proxy.service=api@internal"
+      - "traefik.http.routers.proxy.middlewares=auth"
+      - "traefik.http.middlewares.auth.basicauth.users=admin:$$apr1$$4.K4ku0s$$ix9uKfB1No73i0YKHpkWn/"
+  frontend:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.frontend.rule=(Host(`${DOMAIN}`) || Host(`proxy`))"
+      - "traefik.http.routers.frontend.entrypoints=web"
+      - "traefik.http.services.frontend.loadbalancer.server.port=80"

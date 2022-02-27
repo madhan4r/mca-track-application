@@ -1,0 +1,15 @@
+version: "3.6"
+services:
+  proxy:
+    command:
+      - "--providers.docker.endpoint=unix:///var/run/docker.sock"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+      - "--log.level=DEBUG"
+      - "--accesslog=true"
+      - "--api=true"
+      - "--api.dashboard=true"
+  backend:
+    command: /start-reload.sh
+  db:
+    command: postgres -c 'shared_buffers=400MB' -c 'max_connections=200'
