@@ -2,7 +2,6 @@ from datetime import datetime
 from typing import Optional
 from pydantic import BaseModel, EmailStr
 
-from app.models.organization.organization import Organization
 from app.db_models.enum.enum import Roles
 
 
@@ -10,7 +9,6 @@ class UserBase(BaseModel):
     email: Optional[EmailStr] = None
     first_name: Optional[str]
     last_name: Optional[str]
-    organization_id: Optional[int]
 
 
 # Properties to receive via API on creation
@@ -37,7 +35,6 @@ class UserInDBBase(UserBase):
 
 # Additional properties to return via API
 class User(UserInDBBase):
-    organization: Optional[Organization]
     pass
 
 

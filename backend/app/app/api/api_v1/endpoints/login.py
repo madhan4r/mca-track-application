@@ -43,7 +43,6 @@ def login_access_token(
     access_token_expires = timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
     data = {
         "user_id": user.user_id,
-        "organization_id": user.organization_id,
         "user_role": user.user_role,
         "is_superuser": user.is_superuser
     }

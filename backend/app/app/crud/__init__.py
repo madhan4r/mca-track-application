@@ -11,25 +11,10 @@
 
 from app.crud.base import CRUDBase
 
-# OrganizationType
-from app.db_models.organization.organization_type import OrganizationType
-from app.models.organization.organization_type import OrganizationTypeCreate,OrganizationTypeUpdate, OrganizationType as OrganizationTypeSummary
-org_type = CRUDBase[OrganizationType, OrganizationTypeCreate, OrganizationTypeUpdate](OrganizationType)
-
-# Organization
-from app.models.organization.organization import OrganizationCreate, OrganizationUpdate, Organization as OrganizationSummary
-from app.db_models.organization.organization import Organization
-org = CRUDBase[Organization, OrganizationCreate, OrganizationUpdate](Organization)
-
 # Project
 from app.models.project.project import ProjectCreate, ProjectUpdate, ProjectSummary
 from app.db_models.project.project import Project
 project = CRUDBase[Project, ProjectCreate, ProjectUpdate](Project)
-
-# Organization Project
-from app.models.organization.project import OrganizationProjectCreate, OrganizationProjectSummary, OrganizationProjectUpdate
-from app.db_models.organization.project import OrganizationProject
-org_project = CRUDBase[OrganizationProject, OrganizationProjectCreate, OrganizationProjectUpdate](OrganizationProject)
 
 # Project Milestone
 from app.models.milestone.milestone import MilestoneCreate, MilestoneSummary, MilestoneUpdate

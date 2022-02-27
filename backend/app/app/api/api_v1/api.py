@@ -3,10 +3,6 @@ from fastapi import APIRouter
 from app.api.api_v1.endpoints import login
 from app.api.api_v1.endpoints.enum import enum_type
 from app.api.api_v1.endpoints.user import user
-from app.api.api_v1.endpoints.organization import (
-    organization,
-    organization_type, project as organization_project
-)
 from app.api.api_v1.endpoints.milestone import milestone
 from app.api.api_v1.endpoints.module import module
 from app.api.api_v1.endpoints.project import project, milestone as project_milestone, module as project_module
@@ -17,7 +13,6 @@ from app.api.api_v1.endpoints.issue import (
     issue,
     audit
 )
-from app.api.api_v1.endpoints.view import audit_view
 
 api_router = APIRouter()
 
@@ -26,11 +21,6 @@ api_router.include_router(login.router, tags=["Login"])
 
 # User
 api_router.include_router(user.router, prefix="/users", tags=["users"])
-
-# Organization
-api_router.include_router(organization_type.router, prefix="/organization", tags=["Organization Type"])
-api_router.include_router(organization.router, prefix="/organization", tags=["Organization"])
-api_router.include_router(organization_project.router, prefix="/organization/projects", tags=["Organization Projects"])
 
 # Milestone
 api_router.include_router(milestone.router, prefix="/milestone", tags=['Milestones'])
@@ -55,6 +45,3 @@ api_router.include_router(audit.router, prefix="/issue/audit", tags=['Audit Issu
 # Enumerations
 api_router.include_router(
     enum_type.router, prefix="/enum/labels", tags=['Enumerations'])
-
-# Views
-api_router.include_router(audit_view.router, prefix="/view", tags=["Audit View"])

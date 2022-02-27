@@ -32,7 +32,7 @@ export default {
   },
   mounted() {
     // set page title
-    document.title = "Ticket";
+    document.title = "Track";
 
     // set 'app-background' class to body tag
     let bodyElement = document.body;
@@ -40,7 +40,7 @@ export default {
 
     // check for active theme
     let htmlElement = document.documentElement;
-    let theme = localStorage.getItem("ticket_theme");
+    let theme = localStorage.getItem("track_theme");
 
     if (theme === "dark") {
       htmlElement.setAttribute("theme", "dark");
@@ -53,10 +53,10 @@ export default {
       let htmlElement = document.documentElement;
 
       if (this.darkMode) {
-        localStorage.setItem("ticket_theme", "dark");
+        localStorage.setItem("track_theme", "dark");
         htmlElement.setAttribute("theme", "dark");
       } else {
-        localStorage.setItem("ticket_theme", "light");
+        localStorage.setItem("track_theme", "light");
         htmlElement.setAttribute("theme", "light");
       }
     }

@@ -87,26 +87,6 @@ def send_new_account_email(email_to: str, username: str, password: str) -> None:
     )
 
 
-def send_daily_issue_email(email_to: str, issue_on: date, issue) -> None:
-    project_name = settings.PROJECT_NAME
-    subject = f"Track ticket status as on {issue_on}"
-    with open(Path(settings.EMAIL_TEMPLATES_DIR) / "issue_status.html") as f:
-        template_str = f.read()
-    server_host = settings.SERVER_HOST
-    send_email(
-        email_to=email_to,
-        subject_template=subject,
-        html_template=template_str,
-        environment={
-            "server_host": server_host,
-            "project_name": settings.PROJECT_NAME,
-            "email": email_to,
-            "issue": issue,
-            "date": issue_on
-        },
-    )
-
-
 def generate_password_reset_token(email: str) -> str:
     delta = timedelta(hours=settings.EMAIL_RESET_TOKEN_EXPIRE_HOURS)
     now = datetime.utcnow()

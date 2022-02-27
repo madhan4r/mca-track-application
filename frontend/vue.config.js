@@ -4,7 +4,7 @@ module.exports = {
   css: {
     loaderOptions: {
       sass: {
-        prependData: `@import "@/assets/scss/themes/ticket.scss";`
+        prependData: `@import "@/assets/scss/themes/track.scss";`
       }
     }
   }

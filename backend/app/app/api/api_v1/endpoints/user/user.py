@@ -173,28 +173,6 @@ def update_user(
     return user
 
 
-@router.get("/get_users/by/project", response_model=List[UserInDBBase])
-def get_users_by_project(
-    request: Request,
-    organization_projects___project_id__in: int,
-    all_rows: Optional[bool] = False,
-    db: Session = Depends(deps.get_db),
-    current_user: User = Depends(deps.get_current_user),
-):
-    return db_user.get_users_by_request(request=request, db=db, all_rows=all_rows)
-
-
-@router.get("/get_users/by/organization", response_model=List[UserInDBBase])
-def get_users_by_organization(
-    request: Request,
-    organization_id: int,
-    all_rows: Optional[bool] = False,
-    db: Session = Depends(deps.get_db),
-    current_user: User = Depends(deps.get_current_user),
-):
-    return db_user.get_users_by_request(request=request, db=db, all_rows=all_rows)
-
-
 @router.delete("/{user_id}")
 def delete_user(
     user_id: int,

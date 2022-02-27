@@ -19,7 +19,6 @@ class AuditType(str, enum.Enum):
     assignee_change = "assignee_change"
 
 class Roles(str, enum.Enum):
-    customer = "customer"
     lead = "lead"
     developer = "developer"
 

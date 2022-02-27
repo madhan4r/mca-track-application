@@ -26,4 +26,7 @@ fi
 alembic upgrade head
 
 # Run data changes
-psql -v ON_ERROR_STOP=1 postgresql://postgres:postgres@db:5432/app -f scripts/sql/ticket_data_changes_1.sql
+psql -v ON_ERROR_STOP=1 postgresql://postgres:postgres@db:5432/app -f scripts/sql/track_data_changes_1.sql
+
+# initial data
+python /app/app/initial_data.py

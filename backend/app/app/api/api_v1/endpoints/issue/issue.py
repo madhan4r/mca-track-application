@@ -20,7 +20,6 @@ from app.db_models.issue.type import IssueType
 from app.db_models.issue.status import IssueStatus
 from app.db_models.issue.priority import IssuePriority
 from app.db_models.project.project import Project
-from app.db_models.organization.project import OrganizationProject
 
 router = APIRouter()
 
@@ -47,8 +46,7 @@ def get_issues(
         db_model=Issue,
         join_db_models=[
             IssueType, IssueStatus, IssuePriority,
-            ProjectModule, ProjectMilestone, Project,
-            OrganizationProject, User
+            ProjectModule, ProjectMilestone, Project, User
         ],
         join_conditions=[
             Issue.type_id == IssueType.issue_type_id,
@@ -57,7 +55,6 @@ def get_issues(
             Issue.module_id == ProjectModule.project_module_id,
             Issue.milestone_id == ProjectMilestone.project_milestone_id,
             Issue.project_id == Project.project_id,
-            Project.project_id == OrganizationProject.project_id,
             Issue.created_by == User.user_id,
             Issue.assigned_to == User.user_id
         ],
@@ -80,8 +77,7 @@ def get_issues_count(
         db_model=Issue,
         join_db_models=[
             IssueType, IssueStatus, IssuePriority,
-            ProjectModule, ProjectMilestone, Project,
-            OrganizationProject, User
+            ProjectModule, ProjectMilestone, Project, User
         ],
         join_conditions=[
             Issue.type_id == IssueType.issue_type_id,
@@ -90,7 +86,6 @@ def get_issues_count(
             Issue.module_id == ProjectModule.project_module_id,
             Issue.milestone_id == ProjectMilestone.project_milestone_id,
             Issue.project_id == Project.project_id,
-            Project.project_id == OrganizationProject.project_id,
             Issue.created_by == User.user_id,
             Issue.assigned_to == User.user_id
         ],
@@ -165,7 +160,7 @@ def get_excel_data_for_issues(
     current_user: User = Depends(get_current_user),
 ):
     records = issue.get_issue_with_title(db)
-    downloadable_file = f"ticket_issues_.xlsx"
+    downloadable_file = f"track_issues_.xlsx"
     file_name = "file_store/"+downloadable_file
 
     df = pd.DataFrame(records)

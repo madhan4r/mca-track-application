@@ -14,6 +14,5 @@ class TokenPayload(BaseModel):
 
 class TokenPayloadExtended(BaseModel):
     user_id: int
-    organization_id: int
     exp: str
     sub: str

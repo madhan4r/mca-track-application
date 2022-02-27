@@ -8,7 +8,6 @@ from app.crud.base import CRUDBase
 from app.crud.SearchFilter.db_model_search_filter import DbModelSearchFilter
 from app.models.user.user import UserCreate, UserUpdate
 from app.db_models.user.user import User
-from app.db_models.organization.project import OrganizationProject
 
 
 class CRUDUser(CRUDBase[User, UserCreate, UserUpdate]):
@@ -48,23 +47,8 @@ class CRUDUser(CRUDBase[User, UserCreate, UserUpdate]):
             return None
         return user
 
-    # def is_active(self, user: User) -> bool:
-    #     return user.is_active
-
     def is_superuser(self, user: User) -> bool:
         return user.is_superuser
-
-    def get_users_by_request(self, db: Session, request: Request, all_rows: bool):
-        return DbModelSearchFilter(
-            db_session=db,
-            request=request,
-            db_model=User,
-            join_db_models=[OrganizationProject],
-            join_conditions=[
-                User.organization_id == OrganizationProject.organization_id,
-            ],
-            is_outer_join=True
-        ).get_filtered_data(fetch_row_count=False, all_rows=all_rows)
 
 
 user = CRUDUser(User)
