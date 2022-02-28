@@ -22,15 +22,21 @@ router = APIRouter()
 
 @router.get("/", response_model=List[UserSummary])
 def get_users(
+    request: Request,
     db: Session = Depends(deps.get_db),
-    skip: int = 0,
-    limit: int = 100,
+    all_rows: bool = True,
+    fetch_row_count: bool = False,
     current_user: User = Depends(deps.get_current_active_superuser),
 ) -> Any:
     """
     Retrieve users.
     """
-    users = db_user.get_multi(db, skip=skip, limit=limit)
+    users = db_user.get_all(request=request,
+                            db_session=db,
+                            db_model=User,
+                            join_db_models=[],
+                            all_rows=all_rows,
+                            fetch_row_count=fetch_row_count)
     return users
 
 
@@ -117,11 +123,6 @@ def create_user(
     """
     Create new user without the need to be logged in.
     """
-    # if not settings.USERS_OPEN_REGISTRATION:
-    #     raise HTTPException(
-    #         status_code=403,
-    #         detail="Open user registration is forbidden on this server",
-    #     )
     user = db_user.get_by_email(db, email=data_access_filter.email)
     if user:
         raise HTTPException(

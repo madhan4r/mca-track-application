@@ -4,21 +4,18 @@
   </div>
 </template>
 <script>
-import { mapActions, mapGetters } from "vuex";
+import { mapActions } from "vuex";
 import ListProject from "@/containers/ListProject.vue";
 
 export default {
   name: "ListProjectPage",
   components: { ListProject },
-  computed: {
-    ...mapGetters(["getOrganizationId"])
-  },
   methods: {
-    ...mapActions(["fetchOrganizationProject"])
+    ...mapActions(["fetchProjects"])
   },
   mounted() {
     document.title = "Projects · Dashboard · Track";
-    this.fetchOrganizationProject(this.getOrganizationId);
+    this.fetchProjects();
   }
 };
 </script>

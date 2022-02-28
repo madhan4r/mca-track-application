@@ -11,16 +11,8 @@ export const issue = {
   fetchIssuePriority: () => {
     return axios.get(`${BASE_URL}/issue/priority/`);
   },
-  fetchProjectMilestone: project_id => {
-    return axios.get(`${BASE_URL}/project/milestone/?project_id=${project_id}`);
-  },
   fetchProjectModule: project_id => {
     return axios.get(`${BASE_URL}/project/module/?project_id=${project_id}`);
-  },
-  fetchProjectUsers: query => {
-    return axios.get(
-      `${BASE_URL}/users/get_users/by/project?all_rows=true&is_superuser__in=null,false&${query}`
-    );
   },
   fetchListIssues: query => {
     return axios.get(

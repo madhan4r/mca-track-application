@@ -17,7 +17,6 @@ class IssueBase(BaseModel):
     status_id: Optional[int]
     priority_id: Optional[int]
     module_id: Optional[int]
-    gitlab_issue_id: Optional[int]
     assigned_to: Optional[int]
     attachment_url: Optional[List[str]]
 

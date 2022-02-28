@@ -10,7 +10,7 @@ export default {
   name: "ListIssuePage",
   components: { ListIssue },
   computed: {
-    ...mapGetters(["getOrganizationProjects", "getSelectedProject"])
+    ...mapGetters(["getSelectedProject"])
   },
   methods: {
     ...mapActions(["fetchProjectByID"])

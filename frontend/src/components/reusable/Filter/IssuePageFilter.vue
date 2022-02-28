@@ -297,8 +297,8 @@ export default {
       "getIssueTypes",
       "getIssueStatus",
       "getProjectModule",
-      "getOrganizationProjects",
-      "getOrganizationUsers"
+      "getProjects",
+      "getUsers"
     ]),
     options() {
       return {
@@ -318,13 +318,13 @@ export default {
             display_text: "Module"
           })) || [],
         project_id__in:
-          this.getOrganizationProjects?.map(val => ({
+          this.getProjects?.map(val => ({
             id: val.project_id,
-            label: val?.project?.project_name,
+            label: val?.project_name,
             display_text: "Project"
           })) || [],
         assigned_to__in:
-          this.getOrganizationUsers?.map(val => ({
+          this.getUsers?.map(val => ({
             ...val,
             display_text: "Assignee"
           })) || []

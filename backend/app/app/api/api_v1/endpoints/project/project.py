@@ -1,4 +1,5 @@
 from app.crud.project.project import project
+from app.crud.issue.issue import issue
 from app.api.deps import get_db
 from app.models.project.project import ProjectSummary, ProjectCreate, ProjectUpdate
 from typing import List
@@ -29,7 +30,16 @@ def get_projects(
     skip: int = 0,
     limit: int = 10
 ) -> List[ProjectSummary]:
-    return project.get_multi(db=db_session, skip=skip, limit=limit)
+    data = project.get_multi(db=db_session, skip=skip, limit=limit)
+    result = []
+    for row in data:
+        orm_data = ProjectSummary.from_orm(row)
+        orm_data.issue_count = issue.get_issue_count_project_id(
+        db=db_session, project_id=orm_data.project_id)
+        orm_data.open_issue_count = issue.get_open_issue_count_project_id(
+        db=db_session, project_id=orm_data.project_id)
+        result.append(orm_data)
+    return result
 
 
 @router.put('/update')

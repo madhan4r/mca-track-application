@@ -22,4 +22,6 @@ class ProjectUpdate(ProjectBase):
 
 class ProjectSummary(ProjectUpdate):
     created_on: Optional[datetime]
+    issue_count: Optional[int]
+    open_issue_count: Optional[int]
     pass

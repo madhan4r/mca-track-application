@@ -2,15 +2,12 @@ import { user } from "@/service/user.js";
 import { getFilterQueryStringWithoutArray } from "@/helpers/helpers.js";
 
 const state = {
-  lastFetchedOrganizationUsers: 0,
-  organizationUsers: []
+  users: []
 };
 
 const getters = {
-  getLastFetchedOrganizationUsers: state =>
-    state.getLastFetchedOrganizationUsers,
-  getOrganizationUsers: state =>
-    state.organizationUsers
+  getUsers: state =>
+    state.users
       ?.map(val => ({
         id: val.user_id,
         label: `${val.first_name} ${val.last_name}`
@@ -46,35 +43,28 @@ const actions = {
         return err;
       });
   },
-  fetchOrganizationUsers({ commit, getters }, organization_id) {
-    let { getLastFetchedOrganizationUsers } = getters;
-    if (getLastFetchedOrganizationUsers === organization_id) return;
+  fetchUsers({ commit }) {
     let query = {
-      organization_id: organization_id,
       user_role__in: ["lead", "developer"]
     };
     return user
-      .fetchUsersByOrganization(getFilterQueryStringWithoutArray(query))
+      .fetchUsers(getFilterQueryStringWithoutArray(query))
       .then(res => {
         const { data } = res;
-        commit("SET_ORGANIZATION_USERS", data);
-        commit("LAST_FETCHED_ORGANIZATION_USERS", organization_id);
+        commit("SET_USERS", data);
         return res;
       })
       .catch(err => {
-        console.log("Error while fetching organization users", err);
+        console.log("Error while fetching users", err);
         return err;
       });
   }
 };
 
 const mutations = {
-  ["SET_ORGANIZATION_USERS"](state, data) {
-    state.organizationUsers = data;
+  ["SET_USERS"](state, data) {
+    state.users = data;
   },
-  ["LAST_FETCHED_ORGANIZATION_USERS"](state, data) {
-    state.lastFetchedOrganizationUsers = data;
-  }
 };
 
 export default {

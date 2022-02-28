@@ -1,22 +1,22 @@
 import { project } from "@/service/project.js";
 
 const state = {
-  organizationProjects: [],
+  projects: [],
   selectedProject: []
 };
 
 const getters = {
-  getOrganizationProjects: state => state.organizationProjects,
+  getProjects: state => state.projects,
   getSelectedProject: state => state.selectedProject
 };
 
 const actions = {
-  fetchOrganizationProject({ commit }, organization_id) {
+  fetchProjects({ commit }) {
     return project
-      .fetchOrganizationProject({ query: `organization_id=${organization_id}` })
+      .fetchProjects()
       .then(res => {
         const { data } = res;
-        commit("SET_ORGANIZATION_PROJECTS", data);
+        commit("SET_PROJECTS", data);
         return res;
       })
       .catch(err => {
@@ -40,8 +40,8 @@ const actions = {
 };
 
 const mutations = {
-  ["SET_ORGANIZATION_PROJECTS"](state, data) {
-    state.organizationProjects = data;
+  ["SET_PROJECTS"](state, data) {
+    state.projects = data;
   },
   ["SET_SELECTED_PROJECT"](state, data) {
     state.selectedProject = data;

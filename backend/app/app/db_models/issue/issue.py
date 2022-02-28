@@ -24,7 +24,6 @@ class Issue(Base):
     status_id = Column(ForeignKey('issue_status.issue_status_id'), nullable=True)
     priority_id = Column(ForeignKey('issue_priority.issue_priority_id'), nullable=True)
     module_id = Column(ForeignKey('project_modules.project_module_id'), nullable=True)
-    gitlab_issue_id = Column(Integer, nullable=True)
     assigned_to = Column(ForeignKey('users.user_id'), nullable=True)
     created_by = Column(ForeignKey('users.user_id'), nullable=False)
     created_on = Column(DateTime, server_default=text("now()"), nullable=False)
@@ -40,5 +39,4 @@ class Issue(Base):
     quick_search_columns = [
         'issue_id',
         'issue_title',
-        'gitlab_issue_id'
     ]

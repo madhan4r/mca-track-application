@@ -164,19 +164,6 @@
             <CRow class="pl-3 pr-3">
               <CCol md="6" class="mb-3">
                 <CRow class="row">
-                  <label class="col-lg-12 col-md-12">Gitlab Issue ID</label>
-                  <div class="col-lg-12 col-md-12 col-sm-12">
-                    <TextInput
-                      name="gitlab_issue_id"
-                      :value="issue.gitlab_issue_id"
-                      type="number"
-                      @input="handleInput"
-                    />
-                  </div>
-                </CRow>
-              </CCol>
-              <CCol md="6" class="mb-3">
-                <CRow class="row">
                   <label class="col-lg-12 col-md-12">Assignee</label>
                   <div class="col-lg-12 col-md-12 col-sm-12">
                     <Select
@@ -191,29 +178,6 @@
                       :taggable="false"
                       :multiple="false"
                       :clearable="true"
-                    />
-                  </div>
-                </CRow>
-              </CCol>
-            </CRow>
-            <CRow class="pl-3 pr-3">
-              <CCol md="6" class="mb-3">
-                <CRow class="row">
-                  <label class="col-lg-12 col-md-12">Milestone</label>
-                  <div class="col-lg-12 col-md-12 col-sm-12">
-                    <Select
-                      name="milestone_id"
-                      :value="issue.milestone_id"
-                      @input="handleChangeSelect"
-                      :options="
-                        options && options['milestone_id']
-                          ? options['milestone_id']
-                          : []
-                      "
-                      :taggable="false"
-                      :multiple="false"
-                      :clearable="true"
-                      :disabled="getUserRole == Roles.customer"
                     />
                   </div>
                 </CRow>
@@ -252,9 +216,8 @@ export default {
       "getIssueTypes",
       "getIssueStatus",
       "getIssuePriority",
-      "getProjectMilestone",
       "getProjectModule",
-      "getProjectUsers",
+      "getUsers",
       "getUserRole"
     ]),
     getProjectName() {
@@ -265,9 +228,8 @@ export default {
         type_id: this.getIssueTypes || [],
         status_id: this.getIssueStatus || [],
         priority_id: this.getIssuePriority || [],
-        milestone_id: this.getProjectMilestone || [],
         module_id: this.getProjectModule || [],
-        assigned_to: this.getProjectUsers || []
+        assigned_to: this.getUsers || []
       };
     }
   },

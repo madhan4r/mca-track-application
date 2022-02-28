@@ -8,9 +8,9 @@ export const user = {
   updateUser: payload => {
     return axios.put(`${BASE_URL}/users/me`, payload);
   },
-  fetchUsersByOrganization: query => {
+  fetchUsers: query => {
     return axios.get(
-      `${BASE_URL}/users/get_users/by/organization?all_rows=true&is_superuser__in=null,false&${query}`
+      `${BASE_URL}/users/?all_rows=true&is_superuser__in=null,false&${query}`
     );
   }
 };

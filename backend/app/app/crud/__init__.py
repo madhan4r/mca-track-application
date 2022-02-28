@@ -41,3 +41,8 @@ issue_type = CRUDBase[IssueType, IssueTypeCreate, IssueTypeUpdate](IssueType)
 from app.models.issue.priority import IssuePriorityCreate, IssuePrioritySummary, IssuePriorityUpdate
 from app.db_models.issue.priority import IssuePriority
 issue_priority = CRUDBase[IssuePriority, IssuePriorityCreate, IssuePriorityUpdate](IssuePriority)
+
+# View
+from app.models.view.audit_view import AuditViewCreate, AuditViewUpdate, AuditViewSummary
+from app.db_models.view.audit_view import AuditView
+audit_view = CRUDBase[AuditView, AuditViewCreate, AuditViewUpdate](AuditView)

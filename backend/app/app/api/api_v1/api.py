@@ -12,6 +12,7 @@ from app.api.api_v1.endpoints.issue import (
     issue,
     audit
 )
+from app.api.api_v1.endpoints.view import audit_view
 
 api_router = APIRouter()
 
@@ -40,3 +41,6 @@ api_router.include_router(audit.router, prefix="/issue/audit", tags=['Audit Issu
 # Enumerations
 api_router.include_router(
     enum_type.router, prefix="/enum/labels", tags=['Enumerations'])
+
+# Views
+api_router.include_router(audit_view.router, prefix="/view", tags=["Audit View"])

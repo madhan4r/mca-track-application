@@ -25,10 +25,6 @@ const getters = {
     let { getUserDetails } = getters;
     return getUserDetails.user_id;
   },
-  getOrganizationId(state, getters) {
-    let { getUserDetails } = getters;
-    return getUserDetails.organization_id;
-  },
   getUserRole(state, getters) {
     let { getUserDetails } = getters;
     return getUserDetails.user_role;
@@ -40,12 +36,6 @@ const getters = {
   getUserName(state) {
     return state.user?.first_name || "User";
   },
-  getOrganizationTypeID(state) {
-    return state.user?.organization?.organization_type_id || "User";
-  },
-  getOrganizationName(state) {
-    return state.user?.organization?.organization_name || "";
-  }
 };
 
 const actions = {

@@ -56,20 +56,6 @@
         <CCol lg="3"><b>Module :</b> {{ getModule }} </CCol>
         <CCol lg="2"><b>Priority :</b> {{ getPriority }} </CCol>
         <CCol lg="2"><b>Assignee :</b> {{ getAssignee }} </CCol>
-        <CCol lg="3"><b>Milestone :</b> {{ getMilestone }} </CCol>
-        <CCol lg="2">
-          <b>Gitlab Issue Id :</b>
-          <a
-            :href="`https://gitlab.com/screel/ohr/-/issues/${getGitlabIssueID}`"
-            class="cursor-pointer"
-            style="color: #3c4b64"
-            target="_blank"
-            v-if="getGitlabIssueID"
-          >
-            #{{ getGitlabIssueID }}
-          </a>
-          <a href="#" target="_self" style="color: #3c4b64" v-else> --</a>
-        </CCol>
       </CRow>
       <hr />
       <div class="Audit-History">
@@ -166,41 +152,6 @@
                         >updated the type from
                         <b>{{ item.previous_type_name }}</b> to
                         <b>{{ item.updated_type_name }}</b>
-                      </span>
-                      ·
-                      <strong>{{ showTimeDiff(item.created_on) }} ago</strong>
-                    </p>
-                  </div>
-                </li>
-                <li v-if="item.audit_type == 'milestone_change'">
-                  <time class="time m-0">
-                    <span>{{ formatTime(item.created_on) }}</span>
-                    <span>{{ formatDate(item.created_on) }}</span>
-                  </time>
-
-                  <div class="icon" style="background-color: tomato">
-                    <em
-                      class="material-icons"
-                      style="color: white;line-height: 40px"
-                    >
-                      date_range
-                    </em>
-                  </div>
-                  <div class="label">
-                    <p>
-                      <span class="h6">
-                        <strong>
-                          @{{ formatName(item.created_username) }}
-                        </strong>
-                      </span>
-                      <span
-                        >updated the milestone
-                        <b>{{
-                          item.previous_milestone_name
-                            ? `from ${item.previous_milestone_name}`
-                            : ""
-                        }}</b>
-                        to <b>{{ item.updated_milestone_name }}</b>
                       </span>
                       ·
                       <strong>{{ showTimeDiff(item.created_on) }} ago</strong>
@@ -321,20 +272,8 @@ export default {
     getModule() {
       return this.getSelectedIssue?.module?.module?.module_name || "--";
     },
-    getGitlabIssueID() {
-      return this.getSelectedIssue?.gitlab_issue_id || "";
-    },
     getPriority() {
       return this.getSelectedIssue?.priority?.issue_priority || "--";
-    },
-    getMilestone() {
-      return this.getSelectedIssue?.milestone_id
-        ? `${
-            this.getSelectedIssue?.milestone?.milestone?.milestone
-          } / ${this.formatDate(
-            this.getSelectedIssue?.milestone?.milestone?.milestone_date
-          )}`
-        : "--";
     },
     getAssignee() {
       return this.getSelectedIssue?.assigned_to
@@ -364,18 +303,6 @@ export default {
         updated_status_name: val?.updated_status?.status,
         previous_type_name: val?.previous_type?.type,
         updated_type_name: val?.updated_type?.type,
-        previous_milestone_name: val?.previous_milestone?.milestone_id
-          ? `${
-              val?.previous_milestone?.milestone?.milestone
-            } / ${this.formatDate(
-              val?.previous_milestone?.milestone?.milestone_date
-            )}`
-          : "",
-        updated_milestone_name: `${
-          val?.updated_milestone?.milestone?.milestone
-        } / ${this.formatDate(
-          val?.updated_milestone?.milestone?.milestone_date
-        )}`,
         previous_assignee_name: val?.previous_assignee?.first_name,
         updated_assignee_name: val?.updated_assignee?.first_name,
         created_username_role: val?.created_user?.user_role

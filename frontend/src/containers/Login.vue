@@ -8,7 +8,7 @@
               <img
                 id="logo"
                 style="width: 80%"
-                src="/img/ticket_logo.png"
+                src="/img/track.png"
                 alt="logo"
               />
             </div>

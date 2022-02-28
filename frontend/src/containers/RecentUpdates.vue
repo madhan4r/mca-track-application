@@ -228,8 +228,7 @@ export default {
   }),
   computed: {
     ...mapGetters([
-      "getOrganizationId",
-      "getOrganizationProjects",
+      "getProjects",
       "getRecentUpdates",
       "getRecentUpdatesPagination",
       "isFetchingRecentUpdates"
@@ -238,9 +237,9 @@ export default {
       return {
         project_id: [
           { id: "all", label: "All" },
-          ...this.getOrganizationProjects?.map(val => ({
+          ...this.getProjects?.map(val => ({
             id: val.project_id,
-            label: val?.project?.project_name
+            label: val?.project_name
           }))
         ],
         audit_type: [
@@ -259,7 +258,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(["fetchOrganizationProject", "fetchRecentUpdates"]),
+    ...mapActions(["fetchRecentUpdates","fetchProjects"]),
     showTimeDiff(date) {
       return moment
         .utc(date)
@@ -355,7 +354,7 @@ export default {
     }
   },
   async mounted() {
-    await this.fetchOrganizationProject(this.getOrganizationId);
+    await this.fetchProjects();
     this.setFilterValues();
     const ele = document.getElementById("container");
     if (ele) {

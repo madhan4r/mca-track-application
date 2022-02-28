@@ -21,7 +21,7 @@
           <div class="col-12 p-0 logo">
             <img
               class="p-1 d-inline-block mw-100 cursor-pointer"
-              src="/img/ticket_logo.png"
+              src="/img/track.png"
               style="max-height: 50px; width: 120px"
               alt="logo"
               @click="NavigateTo('/dashboard')"
@@ -42,7 +42,7 @@
             </span>
           </div>
           <div class="d-flex flex-column justify-content-center">
-            <span>Welcome {{ getUserName }} [{{ getOrganizationName }}]</span>
+            <span>Welcome {{ getUserName }}</span>
           </div>
           <div class="d-flex flex-column justify-content-center">
             <CDropdown
@@ -93,7 +93,7 @@ export default {
     page: ""
   }),
   computed: {
-    ...mapGetters(["getUserName", "currentActiveUser", "getOrganizationName"])
+    ...mapGetters(["getUserName", "currentActiveUser"])
   },
   methods: {
     ...mapActions(["fetchUser", "logout", "toggleSideBar"]),

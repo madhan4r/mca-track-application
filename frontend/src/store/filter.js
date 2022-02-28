@@ -2,7 +2,7 @@ const state = {};
 const getters = {};
 const actions = {
   initIssuePageFilterOptions({ dispatch, getters }, payload) {
-    let { getIssueTypes, getIssueStatus, getOrganizationId } = getters;
+    let { getIssueTypes, getIssueStatus } = getters;
     let { project_id, filters } = payload;
     let appendFilterAction = [];
     dispatch("showLoader");
@@ -24,13 +24,13 @@ const actions = {
     if (filters.includes("project_id__in")) {
       appendFilterAction = [
         ...appendFilterAction,
-        dispatch("fetchOrganizationProject", getOrganizationId)
+        dispatch("fetchProjects")
       ];
     }
     if (filters.includes("assigned_to__in")) {
       appendFilterAction = [
         ...appendFilterAction,
-        dispatch("fetchOrganizationUsers", getOrganizationId)
+        dispatch("fetchUsers")
       ];
     }
 
