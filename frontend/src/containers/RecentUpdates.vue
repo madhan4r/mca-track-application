@@ -258,7 +258,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(["fetchRecentUpdates","fetchProjects"]),
+    ...mapActions(["fetchRecentUpdates", "fetchProjects"]),
     showTimeDiff(date) {
       return moment
         .utc(date)

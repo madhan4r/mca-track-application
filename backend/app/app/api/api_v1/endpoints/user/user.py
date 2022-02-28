@@ -26,7 +26,7 @@ def get_users(
     db: Session = Depends(deps.get_db),
     all_rows: bool = True,
     fetch_row_count: bool = False,
-    current_user: User = Depends(deps.get_current_active_superuser),
+    current_user: User = Depends(deps.get_current_user),
 ) -> Any:
     """
     Retrieve users.

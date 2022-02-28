@@ -22,16 +22,10 @@ const actions = {
       ];
     }
     if (filters.includes("project_id__in")) {
-      appendFilterAction = [
-        ...appendFilterAction,
-        dispatch("fetchProjects")
-      ];
+      appendFilterAction = [...appendFilterAction, dispatch("fetchProjects")];
     }
     if (filters.includes("assigned_to__in")) {
-      appendFilterAction = [
-        ...appendFilterAction,
-        dispatch("fetchUsers")
-      ];
+      appendFilterAction = [...appendFilterAction, dispatch("fetchUsers")];
     }
 
     return Promise.all(appendFilterAction).then(res => {

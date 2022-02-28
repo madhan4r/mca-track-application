@@ -64,7 +64,7 @@ const actions = {
 const mutations = {
   ["SET_USERS"](state, data) {
     state.users = data;
-  },
+  }
 };
 
 export default {

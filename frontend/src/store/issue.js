@@ -197,7 +197,7 @@ const actions = {
     let dataPayload = {
       ...rest,
       skip: currentPage * 5 - 5,
-      limit: 5,
+      limit: 5
     };
     let query = getFilterQueryStringWithoutArray(dataPayload);
     return issue

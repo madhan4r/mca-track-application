@@ -35,7 +35,7 @@ const getters = {
   },
   getUserName(state) {
     return state.user?.first_name || "User";
-  },
+  }
 };
 
 const actions = {

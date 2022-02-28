@@ -97,19 +97,19 @@ export default {
     ...mapGetters(["getProjects"]),
     getProject() {
       return (
-        this.getProjects?.map((val) => ({
+        this.getProjects?.map(val => ({
           project_id: val.project_id,
           project_name: val?.project_name,
           issue_count: val.issue_count,
-          open_issue_count: val.open_issue_count,
+          open_issue_count: val.open_issue_count
         })) || []
       );
-    },
+    }
   },
   methods: {
     navigateToIssue(item) {
       this.$router.push({
-        path: `/list-project-issue/${item?.project_id}?page=%5B1%5D`,
+        path: `/list-project-issue/${item?.project_id}?page=%5B1%5D`
       });
     },
     handleSearchInput(value) {
@@ -118,11 +118,11 @@ export default {
     routeToListGlobalIssuePage() {
       if (this.searchTerm) {
         this.$router.push({
-          path: `/global-issues?searchTerm=%5B${this.searchTerm}%5D&page=%5B1%5D`,
+          path: `/global-issues?searchTerm=%5B${this.searchTerm}%5D&page=%5B1%5D`
         });
       }
-    },
-  },
+    }
+  }
 };
 </script>
 
