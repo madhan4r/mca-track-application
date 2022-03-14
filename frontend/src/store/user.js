@@ -10,7 +10,8 @@ const getters = {
     state.users
       ?.map(val => ({
         id: val.user_id,
-        label: `${val.first_name} ${val.last_name}`
+        label: `${val.first_name} ${val.last_name}`,
+        ...val
       }))
       ?.sort((a, b) => {
         var textA = a.label.toUpperCase();
@@ -56,6 +57,21 @@ const actions = {
       })
       .catch(err => {
         console.log("Error while fetching users", err);
+        return err;
+      });
+  },
+  createUsers({ dispatch }, payload) {
+    return user
+      .createUsers(payload)
+      .then(res => {
+        dispatch("showToast", {
+          class: "bg-success text-white",
+          message: "User created successfully!"
+        });
+        return res;
+      })
+      .catch(err => {
+        console.log("Error while creating users", err);
         return err;
       });
   }

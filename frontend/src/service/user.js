@@ -12,5 +12,8 @@ export const user = {
     return axios.get(
       `${BASE_URL}/users/?all_rows=true&is_superuser__in=null,false&${query}`
     );
+  },
+  createUsers: payload => {
+    return axios.post(`${BASE_URL}/users/`, payload);
   }
 };

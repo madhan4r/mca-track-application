@@ -10,6 +10,7 @@ import GlobalIssuePage from "../views/GlobalIssuePage.vue";
 import RecentUpdatesPage from "../views/RecentUpdatesPage.vue";
 import DashboardPage from "../views/DashboardPage.vue";
 import AssignedIssuesPage from "../views/AssignedIssuesPage.vue";
+import AdminHomePage from "../views/AdminHomePage.vue";
 
 Vue.use(VueRouter);
 
@@ -63,6 +64,11 @@ const routes = [
     path: "/assigned-issues",
     name: "/assigned-issues",
     component: AssignedIssuesPage
+  },
+  {
+    path: "/admin-home",
+    name: "/admin-home",
+    component: AdminHomePage
   }
 ];
 

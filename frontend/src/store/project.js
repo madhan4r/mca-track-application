@@ -36,6 +36,21 @@ const actions = {
         console.log("Error while fetching project", err);
         return err;
       });
+  },
+  createProject({ dispatch }, payload) {
+    return project
+      .createProject(payload)
+      .then(res => {
+        dispatch("showToast", {
+          class: "bg-success text-white",
+          message: "Project created successfully!"
+        });
+        return res;
+      })
+      .catch(err => {
+        console.log("Error while creating project", err);
+        return err;
+      });
   }
 };
 

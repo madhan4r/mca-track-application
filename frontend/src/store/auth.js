@@ -52,14 +52,19 @@ const actions = {
     return auth
       .logInGetToken(payload)
       .then(res => {
-        const { data } = res;
+        let { data } = res;
         localStorage.setItem("token", JSON.stringify(data));
         dispatch("showToast", {
           class: "bg-success text-white",
           message: "Login Successful!"
         });
         commit("LOGIN_SUCCESS", data);
-        router.push("/list-project");
+        data = parseJwt(data.access_token);
+        if (data.is_superuser) {
+          router.push("/admin-home");
+        } else {
+          router.push("/list-project");
+        }
         return res;
       })
       .catch(err => {
